@@ -2,29 +2,40 @@ import React from "react";
 import { routes } from "../Router"
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-import { GridWrapper, WrapperSvg, AvatarSvg, CustomPaper, LoginWrapper, Entrar, Form, Inputs, EntrarButton, Cadastrar, Span } from './style'
+import { WrapperSvg, AvatarSvg, CustomPaper, LoginWrapper, Entrar, Form, Inputs, EntrarButton, Cadastrar, Span } from './style';
+import { signUpListener } from "../../Actions/users"
 
 export class SignUpListener extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: '',
-            email: '',
-            nickname: '',
-            password: ''
+            signUpListenerForm: {}
         }
     }
 
+    handleInput=(event)=>{
+        const { name, value } = event.target
+
+        this.setState({signUpListenerForm: {...this.state.signUpListenerForm, [name]: value}})
+    }
+
+    handleFormSubmit=(event)=>{
+        event.preventDefault()
+
+        this.props.signUpListener(this.state.signUpListenerForm)
+    }
+
     render() {
-        const { name, email, nickname, password } = this.state
+        
+        const { signUpListenerForm } = this.state
         return (
-            // <GridWrapper>
+            
             <LoginWrapper>
                 <CustomPaper elevation={3}>
                     <WrapperSvg>
                         <AvatarSvg src={require("../../img/undraw_profile_pic_ic5t.svg")}></AvatarSvg>
                     </WrapperSvg>
-                    <Form>
+                    <Form onSubmit={this.handleFormSubmit}>
 
                         <Entrar variant="h6">Entre com as informações para criar um usuário.</Entrar>
                         <Inputs
@@ -33,7 +44,8 @@ export class SignUpListener extends React.Component {
                             required
                             type="text"
                             variant="outlined"
-                            value={name}
+                            onChange={this.handleInput}
+                            value={signUpListenerForm.name}
                             InputProps={{ placeholder: "Digite seu nome" }}
                         />
 
@@ -43,7 +55,8 @@ export class SignUpListener extends React.Component {
                             required
                             type="email"
                             variant="outlined"
-                            value={email}
+                            onChange={this.handleInput}
+                            value={signUpListenerForm.email}
                             InputProps={{ placeholder: "email@email.com" }}
                         />
 
@@ -51,9 +64,10 @@ export class SignUpListener extends React.Component {
                             name="nickname"
                             label="Nickname"
                             required
-                            type="email"
+                            type="text"
                             variant="outlined"
-                            value={nickname}
+                            onChange={this.handleInput}
+                            value={signUpListenerForm.nickname}
                             InputProps={{ placeholder: "Digite um apelido" }}
                         />
 
@@ -64,7 +78,8 @@ export class SignUpListener extends React.Component {
                             required
                             type="password"
                             variant="outlined"
-                            value={password}
+                            onChange={this.handleInput}
+                            value={signUpListenerForm.password}
                             InputProps={{ placeholder: "Insira sua senha." }}
                         />
                         
@@ -80,8 +95,6 @@ export class SignUpListener extends React.Component {
                 </CustomPaper>
             </LoginWrapper >
 
-            // </GridWrapper>
-
         )
     }
 }
@@ -89,6 +102,7 @@ export class SignUpListener extends React.Component {
 const mapDispatchToProps = dispatch => {
     return {
         goToHomePage: () => dispatch(push(routes.root)),
+        signUpListener: (body) => dispatch(signUpListener(body))
     }
 }
 

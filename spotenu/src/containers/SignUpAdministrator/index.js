@@ -2,29 +2,39 @@ import React from "react";
 import { routes } from "../Router"
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-import { GridWrapper, WrapperSvg, AvatarSvg, CustomPaper, LoginWrapper, Entrar, Form, Inputs, EntrarButton, Cadastrar, Span } from './style'
+import { WrapperSvg, AvatarSvg, CustomPaper, LoginWrapper, Entrar, Form, Inputs, EntrarButton, Cadastrar, Span } from './style'
+import { signUpAdministrator } from "../../Actions/users";
 
 export class SignUpAdministrator extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: '',
-            email: '',
-            nickname: '',
-            password: ''
+            signUpAdministratorForm: []
         }
     }
 
+
+    handleInput = (event) => {
+        const { name, value } = event.target
+
+        this.setState({ SignUpAdministratorForm: { ...this.state.SignUpAdministratorForm, [name]: value } })
+    }
+
+    handleFormSubmit = (event) => {
+        event.preventDefault()
+
+        this.props.SignUpAdministrator(this.state.SignUpAdministratorForm)
+    }
     render() {
-        const { name, email, nickname, password } = this.state
+        const { signUpAdministratorForm } = this.state
         return (
-            // <GridWrapper>
+            
             <LoginWrapper>
                 <CustomPaper elevation={3}>
                     <WrapperSvg>
                         <AvatarSvg src={require("../../img/undraw_profile_pic_ic5t.svg")}></AvatarSvg>
                     </WrapperSvg>
-                    <Form>
+                    <Form onSubmit={this.handleFormSubmit}>
 
                         <Entrar variant="h6">Entre com as informações para criar um usuário Administrador.</Entrar>
                         <Inputs
@@ -33,7 +43,7 @@ export class SignUpAdministrator extends React.Component {
                             required
                             type="text"
                             variant="outlined"
-                            value={name}
+                            value={signUpAdministratorForm.name}
                             InputProps={{ placeholder: "Digite seu nome" }}
                         />
 
@@ -43,7 +53,7 @@ export class SignUpAdministrator extends React.Component {
                             required
                             type="email"
                             variant="outlined"
-                            value={email}
+                            value={signUpAdministratorForm.email}
                             InputProps={{ placeholder: "email@email.com" }}
                         />
 
@@ -53,7 +63,7 @@ export class SignUpAdministrator extends React.Component {
                             required
                             type="text"
                             variant="outlined"
-                            value={nickname}
+                            value={signUpAdministratorForm.nickname}
                             InputProps={{ placeholder: "Digite seu apelido" }}
                         />
 
@@ -64,7 +74,7 @@ export class SignUpAdministrator extends React.Component {
                             required
                             type="password"
                             variant="outlined"
-                            value={password}
+                            value={signUpAdministratorForm.password}
                             InputProps={{ placeholder: "Insira sua senha." }}
                         />
 
@@ -80,8 +90,6 @@ export class SignUpAdministrator extends React.Component {
                 </CustomPaper>
             </LoginWrapper >
 
-            // </GridWrapper>
-
         )
     }
 }
@@ -89,6 +97,7 @@ export class SignUpAdministrator extends React.Component {
 const mapDispatchToProps = dispatch => {
     return {
         goToHomePage: () => dispatch(push(routes.root)),
+        SignUpAdministrator: (body) => dispatch(signUpAdministrator(body))
     }
 }
 

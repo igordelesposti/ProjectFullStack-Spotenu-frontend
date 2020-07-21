@@ -5,40 +5,40 @@ import { routes } from "../Router";
 import { Cadastrar, Span, CreateButton, HeadphoneImg, PaperBand, Wrapper, WrapperContent, Title, TypographyAlbum } from "./style"
 
 
-class BandScreen extends React.Component {
+class AdministratorScreen extends React.Component {
     render() {
         return (
             <WrapperContent>
                 <br /><br />
-                <Title variant="h1">Bem vindo, bandax</Title>
+                <Title variant="h1">Bem vindo, Administrador</Title>
                 <Wrapper>
                     <PaperBand>
                         <HeadphoneImg></HeadphoneImg>
                     </PaperBand>
                     <PaperBand>
                         <TypographyAlbum>
-                            Deseja criar um álbum?
+                            Deseja criar um gênero?
                         </TypographyAlbum>
                         <CreateButton
-                            onClick={this.props.goToCreateAlbum}
+                            onClick={this.props.goToCreateGender}
                             color="secondary"
-                            variant="contained">Criar Álbum</CreateButton>
+                            variant="contained">Criar</CreateButton>
                         <Cadastrar>
-                            Quer ver todas seus álbuns criados?
+                            Quer ver todas seus gêneros criados?
                         <Span
                             > Clique Aqui.</Span>
                         </Cadastrar>
                     </PaperBand>
                     <PaperBand>
                         <TypographyAlbum>
-                            Deseja criar uma música?
+                            Deseja aprovar uma banda?
                         </TypographyAlbum>
                         <CreateButton
-                            onClick={this.props.goToCreateMusic}
+                            onClick={this.props.goToApproveBand}
                             color="secondary"
-                            variant="contained">Criar Música</CreateButton>
+                            variant="contained">Aprovar</CreateButton>
                         <Cadastrar>
-                            Quer ver todas suas músicas cadastradas?
+                            Quer ver todas suas bandas cadastradas?
                         <Span
                             > Clique Aqui.</Span>
                         </Cadastrar>
@@ -51,8 +51,8 @@ class BandScreen extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        goToCreateAlbum: () => dispatch(push(routes.createAlbum)),
-        goToCreateMusic: () => dispatch(push(routes.createMusic)),
+        goToCreateGender: () => dispatch(push(routes.addGenres)),
+        goToApproveBand: () => dispatch(push(routes.approveBandScreen)),
     }
 }
-export default connect(null, mapDispatchToProps)(BandScreen);
+export default connect(null, mapDispatchToProps)(AdministratorScreen);

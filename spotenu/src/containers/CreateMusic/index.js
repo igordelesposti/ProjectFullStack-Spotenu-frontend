@@ -5,13 +5,13 @@ import { routes } from "../Router";
 import { BodyGradient, CreateButton, Inputs, AlbumImg, PaperBand, Wrapper, WrapperContent, Title, TypographyAlbum } from "./style"
 
 
-class CreateAlbum extends React.Component {
+class CreateMusic extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
             name: '',
-            gender: '',
+            album: '',
         }
     }
 
@@ -21,7 +21,7 @@ class CreateAlbum extends React.Component {
             <BodyGradient>
                 <WrapperContent>
                     <br /><br />
-                    <Title variant="h1">Mostre seu álbum ao mundo.</Title>
+                    <Title variant="h1">Crie sua música.</Title>
                     <Wrapper>
                         <PaperBand>
                             <AlbumImg></AlbumImg>
@@ -41,13 +41,13 @@ class CreateAlbum extends React.Component {
                             />
 
                             <Inputs
-                                name="genrer"
-                                label="Gênero"
+                                name="album"
+                                label="Álbum"
                                 required
                                 type="text"
                                 variant="outlined"
                                 value={genrer}
-                                InputProps={{ placeholder: "Gênero" }}
+                                InputProps={{ placeholder: "Álbum" }}
                             />
 
                             <CreateButton color="secondary" variant="contained" >Criar</CreateButton>
@@ -65,4 +65,4 @@ const mapDispatchToProps = dispatch => {
         
     }
 }
-export default connect(null, mapDispatchToProps)(CreateAlbum);
+export default connect(null, mapDispatchToProps)(CreateMusic);

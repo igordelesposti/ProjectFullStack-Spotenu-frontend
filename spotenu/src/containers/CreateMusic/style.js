@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
-import CreateAlbum from "../../img/createalbum.jpg"
+import CreateMusic from "../../img/createmusic.jpg"
 import Typography from '@material-ui/core/Typography'
 
 const colors = keyframes` {
@@ -24,7 +24,7 @@ justify-content: center;
 flex-direction: column;
 height: 100vh;
 width: 100vw;
-background: linear-gradient(45deg, #c44569, #d9a7c7, #fffcdc);
+background: linear-gradient(45deg, #C6FFDD, #FBD786, #f7797d);
 background-size: 150% 150%;
 animation: ${colors} 13s ease infinite;
 `
@@ -52,7 +52,7 @@ export const TypographyAlbum = styled.span`
 `
 
 export const AlbumImg = styled.div`
- background-image: url(${CreateAlbum});
+ background-image: url(${CreateMusic});
  background-size: cover;
  width: 100%;
  height: 100%;

@@ -5,12 +5,6 @@ import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 
 
-// export const GridWrapper = styled.div`
-//     display: grid;
-//     grid-template-columns: 40% 60%;
-//     border: solid red 1px;
-// `
-
 export const WrapperSvg = styled.div`
     display: flex;
     flex-direction: column;
@@ -42,7 +36,7 @@ export const LoginWrapper = styled.div`
     justify-items: center;
     width: 100vw;
     height:100vh;
-    background: #4b4b4b;
+    background: #dcdde1;
 
 `
 

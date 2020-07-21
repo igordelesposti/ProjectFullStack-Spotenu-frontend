@@ -33,7 +33,6 @@ export const CustomPaper = styled(Paper)`
     width: 400px;
     margin: 0 auto;
     margin-top: 250px;
-
 `
 export const LoginWrapper = styled.div`
     display: flex;
@@ -42,8 +41,7 @@ export const LoginWrapper = styled.div`
     justify-items: center;
     width: 100vw;
     height:100vh;
-    background: #4b4b4b;
-
+    background: #38ef7d;
 `
 
 export const Entrar = styled(Typography)`

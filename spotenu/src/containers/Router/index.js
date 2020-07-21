@@ -6,23 +6,26 @@ import LoginPage from "../LoginPage";
 import SignUpListener from "../SignUpListener";
 import SignUpAdministrator from "../SignUpAdministrator";
 import SignUpBand from "../SignUpBand"
-// import ApproveBandScreen from "../ApproveBandScreen";
-// import AddGenres from "../AddGenres";
+import ApproveBandScreen from "../ApproveBandScreen";
+import AddGenres from "../AddGenres";
 import CreateAlbum from "../CreateAlbum";
-// import CreateMusic from "../CreateMusic";
+import CreateMusic from "../CreateMusic";
 import BandScreen from "../BandScreen";
+import AdministratorScreen from "../AdministratorScreen";
 
 export const routes = {
     root: "/",
     signUpAdministrator: "/user/signupadministrator",
     signUpListener: "/user/signup",
     signUpBand: "/user/signupband",
-    // getAllBands: "/band/getallbands",
+    approveBandScreen: "/band/approveband",
     login: "/user/login",
-    // getAllGenres: "/genre/getallgenres",
+    getAllGenres: "/genre/getallgenres",
+    addGenres: "/addgenres",
     createAlbum: "/album/create",
-    // createMusic: "/createmusic"
+    createMusic: "/createmusic",
     bandScreen: "/bandscreen",
+    administratorScreen: "/administratorscreen"
 }
 
 function Router(props) {
@@ -35,10 +38,11 @@ function Router(props) {
                 <Route exact path={routes.signUpListener} component={SignUpListener} />
                 <Route exact path={routes.signUpBand} component={SignUpBand} />
                 <Route exact path={routes.bandScreen} component={BandScreen} />
-                {/* <Route exact path={routes.getAllBands} component={ApproveBandScreen} />
-                <Route exact path={routes.getAllGenres} component={AddGenres} /> */}
+                <Route exact path={routes.approveBandScreen} component={ApproveBandScreen} />
+                <Route exact path={routes.addGenres} component={AddGenres} />
                 <Route exact path={routes.createAlbum} component={CreateAlbum} />
-                {/* <Route exact path={routes.createMusic} component={CreateMusic} /> */}
+                <Route exact path={routes.createMusic} component={CreateMusic} />
+                <Route exact path={routes.administratorScreen} component={AdministratorScreen} />
             </Switch>
         </ConnectedRouter>
     )

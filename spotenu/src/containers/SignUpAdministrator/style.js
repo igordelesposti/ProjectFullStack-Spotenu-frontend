@@ -42,7 +42,7 @@ export const LoginWrapper = styled.div`
     justify-items: center;
     width: 100vw;
     height:100vh;
-    background: #4b4b4b;
+    background: #7f8c8d;
 
 `
 

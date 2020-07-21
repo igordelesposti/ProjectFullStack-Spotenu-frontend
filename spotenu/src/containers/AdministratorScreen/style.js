@@ -1,33 +1,8 @@
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
-import TextField from '@material-ui/core/TextField'
-import CreateAlbum from "../../img/createalbum.jpg"
+import Gender from "../../img/generos.jpg"
 import Typography from '@material-ui/core/Typography'
-
-const colors = keyframes` {
-    0% {
-        background-position: 0% 50%;
-    }
-    50%{
-        background-position: 100% 50%;
-    }
-    100%{
-        background-position: 0% 50%;
-    }
-}
-`
-export const BodyGradient = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-height: 100vh;
-width: 100vw;
-background: linear-gradient(45deg, #c44569, #d9a7c7, #fffcdc);
-background-size: 150% 150%;
-animation: ${colors} 13s ease infinite;
-`
 
 export const PaperBand = styled(Paper)`
     display: flex;
@@ -35,24 +10,15 @@ export const PaperBand = styled(Paper)`
     justify-items: center;
     align-items: center;
     justify-content: center;
-    width: 370px;
-    height: 500px;
+    width: 550px;
     margin: 0 auto;
-    margin-top: 150px;
+    margin-top: 250px;
     gap: 30px;
 
 `
-export const TypographyAlbum = styled.span`
-    letter-spacing: 1px;
-    font-size: 30px;
-    font-family: 'Lato';
-    text-align: center;
-    margin: 0 auto;
-    
-`
 
-export const AlbumImg = styled.div`
- background-image: url(${CreateAlbum});
+export const HeadphoneImg = styled.div`
+ background-image: url(${Gender});
  background-size: cover;
  width: 100%;
  height: 100%;
@@ -74,16 +40,22 @@ export const WrapperContent = styled.div`
     justify-items: center;
     align-items: center;
     overflow: hidden;    
-    /* background-color: #f7f1e3; */
+    background-color: #f7f1e3;
 
 `
 
 export const Title = styled(Typography)`
    letter-spacing: 5px;
-   border-left: 2px solid whitesmoke;
-   border-right: 2px solid whitesmoke;
 `
-
+export const TypographyAlbum = styled.span`
+    letter-spacing: 1px;
+    font-size: 30px;
+    font-family: 'Lato';
+    text-align: center;
+    margin: 0 auto;
+    border-bottom: 1px solid #e15f41;
+    
+`
 
 export const CreateButton = styled(Button)`
     border-radius: 2px;
@@ -103,8 +75,4 @@ export const Span = styled.span`
         color: blue;
         text-decoration: underline;
     }
-`
-
-export const Inputs = styled(TextField)`
-    
 `
