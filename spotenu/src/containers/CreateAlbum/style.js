@@ -5,6 +5,25 @@ import TextField from '@material-ui/core/TextField'
 import CreateAlbum from "../../img/createalbum.jpg"
 import Typography from '@material-ui/core/Typography'
 
+export const Select = styled.select`
+    width: 200px;
+    height: 55px;
+    border-radius: 5px;
+    border: solid 1px #c5c5c5;
+    padding: 10px;
+    color: gray;
+    font-size: 15px;
+
+`
+export const CustomForm = styled.form`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+
+`
+
 const colors = keyframes` {
     0% {
         background-position: 0% 50%;
@@ -35,8 +54,8 @@ export const PaperBand = styled(Paper)`
     justify-items: center;
     align-items: center;
     justify-content: center;
-    width: 370px;
-    height: 500px;
+    width: 440px;
+    height: 545px;
     margin: 0 auto;
     margin-top: 150px;
     gap: 30px;
@@ -74,7 +93,6 @@ export const WrapperContent = styled.div`
     justify-items: center;
     align-items: center;
     overflow: hidden;    
-    /* background-color: #f7f1e3; */
 
 `
 
@@ -106,5 +124,6 @@ export const Span = styled.span`
 `
 
 export const Inputs = styled(TextField)`
+    width: 200px;
     
 `

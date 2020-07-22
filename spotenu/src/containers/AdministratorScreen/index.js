@@ -1,11 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
-import { push } from "connected-react-router";
+import { push, replace } from "connected-react-router";
 import { routes } from "../Router";
 import { Cadastrar, Span, CreateButton, HeadphoneImg, PaperBand, Wrapper, WrapperContent, Title, TypographyAlbum } from "./style"
 
 
 class AdministratorScreen extends React.Component {
+
+    componentDidMount(){
+        const token = localStorage.getItem("accessToken")
+
+        if (token === null) {
+            alert("Você não está logado como Admin")
+            this.props.goToLoginScreen();
+        } 
+    }
     render() {
         return (
             <WrapperContent>
@@ -53,6 +62,7 @@ const mapDispatchToProps = dispatch => {
     return {
         goToCreateGender: () => dispatch(push(routes.addGenres)),
         goToApproveBand: () => dispatch(push(routes.approveBandScreen)),
+        goToLoginScreen: () => dispatch(replace(routes.login)),
     }
 }
 export default connect(null, mapDispatchToProps)(AdministratorScreen);

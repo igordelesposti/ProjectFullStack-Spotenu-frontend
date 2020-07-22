@@ -1,9 +1,9 @@
+import { push, replace } from "connected-react-router";
 import React from "react";
 import { connect } from "react-redux";
-import { push } from "connected-react-router";
+import { getBands } from "../../Actions/band";
 import { routes } from "../Router";
-import { getBands } from "../../Actions/band"
-import { DivIcons, CustomCheckIcon, Cadastrar, DivApprove, CustomCloseIcon, BodyGradient, ApproveSvg, PaperBand, Wrapper, WrapperContent, Title, TypographyAlbum } from "./style"
+import { ApproveSvg, BodyGradient, Cadastrar, CustomCheckIcon, CustomCloseIcon, DivApprove, DivIcons, PaperBand, Title, Wrapper, WrapperContent } from "./style";
 
 
 class ApproveBandScreen extends React.Component {
@@ -14,6 +14,7 @@ class ApproveBandScreen extends React.Component {
 
         if (token === null) {
             alert("Você não está logado")
+            this.props.goToLoginScreen();
         }else {
             this.props.getBands(token)
         }
@@ -60,7 +61,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         goToCreateAlbum: () => dispatch(push(routes.createAlbum)),
-        getBands: (accessToken) => dispatch(getBands(accessToken))
+        getBands: (accessToken) => dispatch(getBands(accessToken)),
+        goToLoginScreen: () => dispatch(replace(routes.login)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ApproveBandScreen);

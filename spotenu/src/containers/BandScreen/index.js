@@ -1,16 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
-import { push } from "connected-react-router";
+import { push, replace } from "connected-react-router";
 import { routes } from "../Router";
 import { Cadastrar, Span, CreateButton, HeadphoneImg, PaperBand, Wrapper, WrapperContent, Title, TypographyAlbum } from "./style"
+import { getUserById } from "../../Actions/users";
+
 
 
 class BandScreen extends React.Component {
+
+    componentDidMount() {
+        const token = localStorage.getItem("accessToken")
+
+        if (token === null) {
+            alert("Você não está logado como banda")
+            this.props.goToLoginScreen();
+        } else{
+            this.props.getUserById(token)
+        }
+    }
+
     render() {
         return (
             <WrapperContent>
                 <br /><br />
-                <Title variant="h1">Bem vindo, bandax</Title>
+                <Title variant="h1">Bem vindo, <i>{this.props.users.name}</i></Title>
                 <Wrapper>
                     <PaperBand>
                         <HeadphoneImg></HeadphoneImg>
@@ -24,7 +38,7 @@ class BandScreen extends React.Component {
                             color="secondary"
                             variant="contained">Criar Álbum</CreateButton>
                         <Cadastrar>
-                            Quer ver todas seus álbuns criados?
+                            Quer ver todos seus álbuns criados?
                         <Span
                             > Clique Aqui.</Span>
                         </Cadastrar>
@@ -49,10 +63,18 @@ class BandScreen extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        users: state.user.users
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         goToCreateAlbum: () => dispatch(push(routes.createAlbum)),
         goToCreateMusic: () => dispatch(push(routes.createMusic)),
+        goToLoginScreen: () => dispatch(replace(routes.login)),
+        getUserById: (accessToken) => dispatch(getUserById(accessToken))
     }
 }
-export default connect(null, mapDispatchToProps)(BandScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(BandScreen);

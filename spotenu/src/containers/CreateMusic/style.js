@@ -16,7 +16,28 @@ const colors = keyframes` {
         background-position: 0% 50%;
     }
 }
+
 `
+export const Select = styled.select`
+    width: 200px;
+    height: 55px;
+    border-radius: 5px;
+    border: solid 1px #c5c5c5;
+    padding: 10px;
+    color: gray;
+    font-size: 15px;
+
+`
+
+export const CustomForm = styled.form`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+
+`
+
 export const BodyGradient = styled.div`
 display: flex;
 align-items: center;

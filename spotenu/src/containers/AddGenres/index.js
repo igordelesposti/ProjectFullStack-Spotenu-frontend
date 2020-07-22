@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { push } from "connected-react-router";
+import { replace } from "connected-react-router";
 import { routes } from "../Router";
 import { createGenrer } from "../../Actions/genres"
 import { CustomForm, BodyGradient, CreateButton, Inputs, AlbumImg, PaperBand, Wrapper, WrapperContent, Title, TypographyAlbum } from "./style"
@@ -20,6 +20,7 @@ class AddGenres extends React.Component {
 
         if (token === null) {
             alert("Você não está logado")
+            this.props.goToLoginScreen();
         } 
     }
 
@@ -81,7 +82,8 @@ class AddGenres extends React.Component {
 const mapDispatchToProps = dispatch => {
     return {
 
-        createGenrer: (token, body) => dispatch(createGenrer(token, body))
+        createGenrer: (token, body) => dispatch(createGenrer(token, body)),
+        goToLoginScreen: () => dispatch(replace(routes.login)),
     }
 }
 export default connect(null, mapDispatchToProps)(AddGenres);
