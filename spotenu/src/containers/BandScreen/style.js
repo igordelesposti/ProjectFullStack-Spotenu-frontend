@@ -4,6 +4,11 @@ import Paper from '@material-ui/core/Paper'
 import HeadPhone from "../../img/dashboardband.jpg"
 import Typography from '@material-ui/core/Typography'
 
+
+export const CustomButton = styled(Button)`
+ 
+ `
+
 export const PaperBand = styled(Paper)`
     display: flex;
     flex-direction: column;

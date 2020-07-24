@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { push, replace } from "connected-react-router";
 import { routes } from "../Router";
 import { Cadastrar, Span, CreateButton, HeadphoneImg, PaperBand, Wrapper, WrapperContent, Title, TypographyAlbum } from "./style"
-
+import { getUserById } from "../../Actions/users";
 
 class AdministratorScreen extends React.Component {
 
@@ -13,13 +13,15 @@ class AdministratorScreen extends React.Component {
         if (token === null) {
             alert("Você não está logado como Admin")
             this.props.goToLoginScreen();
-        } 
+        } else {
+            this.props.getUserById(token)
+        }
     }
     render() {
         return (
             <WrapperContent>
                 <br /><br />
-                <Title variant="h1">Bem vindo, Administrador</Title>
+                <Title variant="h1">Bem vindo, <i>{this.props.users.name}</i></Title>
                 <Wrapper>
                     <PaperBand>
                         <HeadphoneImg></HeadphoneImg>
@@ -58,11 +60,18 @@ class AdministratorScreen extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        users: state.user.users
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         goToCreateGender: () => dispatch(push(routes.addGenres)),
         goToApproveBand: () => dispatch(push(routes.approveBandScreen)),
         goToLoginScreen: () => dispatch(replace(routes.login)),
+        getUserById: (accessToken) => dispatch(getUserById(accessToken))
     }
 }
-export default connect(null, mapDispatchToProps)(AdministratorScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AdministratorScreen);
