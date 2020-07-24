@@ -1,9 +1,9 @@
 import { push, replace } from "connected-react-router";
 import React from "react";
 import { connect } from "react-redux";
-import { getBands } from "../../Actions/band";
+import { getBands, approveBand } from "../../Actions/band";
 import { routes } from "../Router";
-import { ApproveSvg, BodyGradient, Cadastrar, CustomCheckIcon, CustomCloseIcon, DivApprove, DivIcons, PaperBand, Title, Wrapper, WrapperContent } from "./style";
+import { ApproveSvg, BodyGradient, Cadastrar, CustomCheckIcon, DivApprove, DivIcons, PaperBand, Title, Wrapper, WrapperContent } from "./style";
 
 
 class ApproveBandScreen extends React.Component {
@@ -21,6 +21,10 @@ class ApproveBandScreen extends React.Component {
 
         
     }
+ 
+    approveBand = (id) =>{
+        this.props.approveBand(id);
+    }
 
     render() {
 
@@ -37,8 +41,10 @@ class ApproveBandScreen extends React.Component {
                                     <DivApprove>
                                         <Cadastrar variant="h6">{band.name}</Cadastrar>
                                         <DivIcons>
-                                            <CustomCheckIcon />
-                                            <CustomCloseIcon />
+                                            {!band.isApproved &&<CustomCheckIcon
+                                                onClick={() => this.approveBand(band.id)}
+                                            />}
+                                            
                                         </DivIcons>
                                     </DivApprove>
                                 )
@@ -63,6 +69,7 @@ const mapDispatchToProps = dispatch => {
         goToCreateAlbum: () => dispatch(push(routes.createAlbum)),
         getBands: (accessToken) => dispatch(getBands(accessToken)),
         goToLoginScreen: () => dispatch(replace(routes.login)),
+        approveBand: (id) => dispatch(approveBand(id))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ApproveBandScreen);

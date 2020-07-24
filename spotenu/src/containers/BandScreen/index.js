@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { push, replace } from "connected-react-router";
 import { routes } from "../Router";
-import { Cadastrar, Span, CreateButton, HeadphoneImg, PaperBand, Wrapper, WrapperContent, Title, TypographyAlbum } from "./style"
+import { CustomButton, Cadastrar, Span, CreateButton, HeadphoneImg, PaperBand, Wrapper, WrapperContent, Title, TypographyAlbum } from "./style"
 import { getUserById } from "../../Actions/users";
 
 
@@ -58,6 +58,12 @@ class BandScreen extends React.Component {
                         </Cadastrar>
                     </PaperBand>
                 </Wrapper>
+                <br/>
+                <CustomButton
+                    onClick={this.props.goToAdminScreen}
+                    color="primary"
+                    variant="contained"
+                >ADMIN</CustomButton>
             </WrapperContent>
         )
     }
@@ -74,7 +80,9 @@ const mapDispatchToProps = dispatch => {
         goToCreateAlbum: () => dispatch(push(routes.createAlbum)),
         goToCreateMusic: () => dispatch(push(routes.createMusic)),
         goToLoginScreen: () => dispatch(replace(routes.login)),
+        goToAdminScreen: () => dispatch(push(routes.administratorScreen)),
         getUserById: (accessToken) => dispatch(getUserById(accessToken))
+
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(BandScreen);
