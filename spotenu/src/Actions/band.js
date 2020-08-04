@@ -2,6 +2,8 @@ import axios from "axios";
 import { push } from "connected-react-router";
 import { routes } from "../containers/Router";
 
+const baseUrl = 'https://j9dqwopuf4.execute-api.us-east-1.amazonaws.com/dev/'
+
 export const getAllBands = (bands) => {
     return {
         type: 'GET_ALL_BANDS',
@@ -14,7 +16,7 @@ export const getAllBands = (bands) => {
 
 export const getBands = (accessToken) => async (dispatch) =>{
     const response = await axios.get(
-        'http://localhost:3333/band/getallbands', {
+        `${baseUrl}band/getallbands`, {
             headers: {
                 "authorization": accessToken
             }
@@ -31,7 +33,7 @@ export const approveBand = (id) => async (dispatch) =>{
     const accessToken = localStorage.getItem("accessToken") 
     
      await axios.post(
-        `http://localhost:3333/band/approve/${id}`, body, {
+        `${baseUrl}band/approve/${id}`, body, {
             headers: {
                 "Authorization": accessToken
             }

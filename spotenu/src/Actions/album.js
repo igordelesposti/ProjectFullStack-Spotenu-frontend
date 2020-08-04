@@ -2,6 +2,8 @@ import axios from "axios";
 import { push } from "connected-react-router";
 import { routes } from "../containers/Router";
 
+const baseUrl = 'https://j9dqwopuf4.execute-api.us-east-1.amazonaws.com/dev/'
+
 export const setAllAbunsByUser = (albuns) => {
     return {
         type: 'SET_ALL_ALBUNS_BY_USER',
@@ -14,7 +16,7 @@ export const setAllAbunsByUser = (albuns) => {
 
 export const getAlbumByUser = (accessToken) => async (dispatch) =>{
     const response = await axios.get(
-        'http://localhost:3333/album/getalbunsbyuser', {
+        `${baseUrl}album/getalbunsbyuser`, {
             headers: {
                 "authorization": accessToken
             }
@@ -30,7 +32,7 @@ export const createAlbum = (accessToken, body) => async (dispatch) => {
     
     try {
          await axios.post(
-            'http://localhost:3333/album/create', body, {
+            `${baseUrl}album/create`, body, {
             headers: { "authorization": accessToken }
         }
         )
