@@ -2,6 +2,7 @@ import axios from "axios";
 import { push } from "connected-react-router";
 import { routes } from "../containers/Router";
 
+const baseUrl = 'https://j9dqwopuf4.execute-api.us-east-1.amazonaws.com/dev/'
 
 export const setAllGenres = (genres) => {
     return {
@@ -14,7 +15,7 @@ export const setAllGenres = (genres) => {
 
 export const getGenres = (accessToken) => async (dispatch) =>{
     const response = await axios.get(
-        'http://localhost:3333/genre/getallgenres', {
+        `${baseUrl}genre/getallgenres`, {
             headers: {
                 "authorization": accessToken
             }
@@ -27,7 +28,7 @@ export const getGenres = (accessToken) => async (dispatch) =>{
 export const createGenrer = (accessToken, body) => async (dispatch) => {
     try {
          await axios.post(
-            'http://localhost:3333/genre/addgenre', body, {
+            `${baseUrl}genre/addgenre`, body, {
             headers: { "authorization": accessToken }
         }
         )

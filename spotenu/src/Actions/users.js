@@ -2,6 +2,8 @@ import axios from "axios";
 import { push } from "connected-react-router";
 import { routes } from "../containers/Router";
 
+const baseUrl = 'https://j9dqwopuf4.execute-api.us-east-1.amazonaws.com/dev/'
+
 export const setUserById = (users) => {
     return {
         type: 'SET_USER_BY_ID',
@@ -13,7 +15,7 @@ export const setUserById = (users) => {
 
 export const getUserById = (accessToken) => async (dispatch) => {
     const response = await axios.get(
-        'http://localhost:3333/user/getuserbyid', {
+        `${baseUrl}user/getuserbyid`, {
             headers: {
                 "authorization": accessToken
             }
@@ -24,7 +26,7 @@ export const getUserById = (accessToken) => async (dispatch) => {
 }
 export const login = (body) => async (dispatch) =>{
         try{
-        const response = await axios.post('http://localhost:3333/user/login', body)
+        const response = await axios.post(`${baseUrl}user/login`, body)
         
         
         localStorage.setItem("accessToken", response.data.accessToken.accessToken)
@@ -38,7 +40,7 @@ export const login = (body) => async (dispatch) =>{
 }
 export const signUpListener = (body) => async(dispatch) =>  {
     try{
-        const response = await axios.post('http://localhost:3333/user/signup', body)
+        const response = await axios.post(`${baseUrl}user/signup`, body)
 
         alert("Usuário cadastrado com sucesso")
 
@@ -51,7 +53,7 @@ export const signUpListener = (body) => async(dispatch) =>  {
 
 export const signUpAdministrator = (body) => async (dispatch) => {
     try{
-        const response = await axios.post('http://localhost:3333/user/signupadministrator',body)
+        const response = await axios.post(`${baseUrl}user/signupadministrator`,body)
 
         alert("Usuário administrador criado com sucesso")
 
@@ -65,7 +67,7 @@ export const signUpAdministrator = (body) => async (dispatch) => {
 
 export const signUpBand = (body) => async (dispatch)=>{
     try{    
-        const response = await axios.post('http://localhost:3333/user/signupband',body)
+        const response = await axios.post(`${baseUrl}user/signupband`,body)
         
         
         alert("Usuário Banda criado com sucesso")

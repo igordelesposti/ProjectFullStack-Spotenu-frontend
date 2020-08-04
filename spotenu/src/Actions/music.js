@@ -2,11 +2,12 @@ import axios from "axios"
 import { push } from "connected-react-router";
 import { routes } from "../containers/Router";
 
+const baseUrl = 'https://j9dqwopuf4.execute-api.us-east-1.amazonaws.com/dev/'
 
 export const createMusic = (accessToken, body) => async (dispatch) => {
     try {
          await axios.post(
-            'http://localhost:3333/music/createmusic', body, {
+            `${baseUrl}music/createmusic`, body, {
             headers: { "authorization": accessToken }
         }
         )
